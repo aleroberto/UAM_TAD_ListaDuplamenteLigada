@@ -1,0 +1,141 @@
+class No {
+    private int dado;
+    private No proximo;
+    private No anterior;
+
+    public No(int dado) {
+        this.dado = dado;
+        anterior = proximo = null;
+    }
+
+    public int getDado() {
+        return dado;
+    }
+
+    public No getProximo() {
+        return this.proximo;
+    }
+
+    public No getAnterior() {
+        return this.anterior;
+    }
+
+    public void setProximo(No proximoNo) {
+        this.proximo = proximoNo;
+    }
+
+    public void setAnterior(No anteriorNo) {
+        this.anterior = anteriorNo;
+    }
+
+}
+
+
+public class ListaDuplamenteLigada {
+    No first;
+    No last;
+
+    public ListaDuplamenteLigada() {
+        first = last = null;
+    }
+
+    public boolean isEmpty() {
+        return (first == null);
+    }
+
+
+    //Inserindo no inicio
+    public void insertFront(int dado) {
+        No novoNo = new No(dado);
+        if(isEmpty()) {
+            first = last = novoNo;
+        } else {
+            novoNo.setProximo(first);
+            first.setAnterior(novoNo);
+            first = novoNo;
+        }
+    }
+
+
+    //Inserindo no final
+    public void insertBack(int dado) {
+        No novoNo = new No(dado);
+        if(isEmpty()) {
+            first = last = novoNo;
+        } else {
+            last.setProximo(novoNo);
+            novoNo.setAnterior(last);
+            last = novoNo;
+        }
+    }
+
+    //Deletando o ultimo
+    public No deleteLast() {
+        No auxiliar = last;
+        if(first == null) {
+            return null;
+        }
+
+        if(first.getProximo() == null) {
+            first = last = null;
+        } else {
+            last.getAnterior().setProximo(null);
+        }
+
+        return auxiliar;
+    }
+
+    //deletando o primeiro
+    public No deleteFirst() {
+        No auxiliar = first;
+        if (first == null) {
+            return null;
+        }
+        if(first.getProximo() == null) {
+            last = first = null;
+        } else {
+           // first.getProximo().setProximo(null);
+            first = first.getProximo();
+        }
+        return auxiliar;
+    }
+
+
+    //Exibindo para frente
+    public void displayForward() {
+        System.out.println("lista:");
+        No auxiliar = first;
+        int contador = 0;
+        while(auxiliar != null) {
+            System.out.println(auxiliar.getDado() + " ");
+            auxiliar =  auxiliar.getProximo();
+            contador++;
+        }
+        System.out.println("Esta lista contem: " + contador + " item(ns)");
+    }
+
+//Inserindo no meio da lista
+    public boolean insertAfter(int key, int dado){
+    	//No auxiliar = 
+    }
+
+
+
+    public static void main(String [] argsa) {
+        ListaDuplamenteLigada li = new  ListaDuplamenteLigada();
+        li.insertBack(10);
+        for(int i = 0; i < 5; i++) {
+            li.insertBack(i);
+        }
+
+        li.insertBack(20);
+	//	li.deleteFirst();
+
+    //    li.deleteLast();
+        li.displayForward();
+
+    }
+
+
+
+}
