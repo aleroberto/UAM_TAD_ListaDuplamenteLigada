@@ -69,6 +69,37 @@ public class ListaDuplamenteLigada {
         }
     }
 
+    //deletando item
+    public No deleteKey(int value) {
+        No auxiliar = first;
+        //lista vazia
+        if(auxiliar == null) {
+            return null;
+        }
+        //localizando o valor
+        while(auxiliar.getDado() != value) {
+            auxiliar = auxiliar.getProximo();
+            if(auxiliar.getProximo() == null) {
+                return null;
+            }
+
+            //removendo-o
+            if(auxiliar == first) {
+                first = auxiliar.getProximo();
+            } else {
+                auxiliar.getAnterior().setProximo(auxiliar.getProximo());
+            }
+
+            if(auxiliar == last) {
+                last = auxiliar.getAnterior();
+            } else {
+                auxiliar.getProximo().setAnterior(auxiliar.getAnterior());
+            }
+        }
+        return auxiliar;
+    }
+
+
     //Deletando o ultimo
     public No deleteLast() {
         No auxiliar = last;
@@ -94,7 +125,7 @@ public class ListaDuplamenteLigada {
         if(first.getProximo() == null) {
             last = first = null;
         } else {
-           // first.getProximo().setProximo(null);
+            // first.getProximo().setProximo(null);
             first = first.getProximo();
         }
         return auxiliar;
@@ -114,9 +145,9 @@ public class ListaDuplamenteLigada {
         System.out.println("Esta lista contem: " + contador + " item(ns)");
     }
 
-//Inserindo no meio da lista
-    public boolean insertAfter(int key, int dado){
-    	//No auxiliar = 
+    //Inserindo no meio da lista
+    public boolean insertAfter(int key, int dado) {
+        return ;
     }
 
 
@@ -129,9 +160,9 @@ public class ListaDuplamenteLigada {
         }
 
         li.insertBack(20);
-	//	li.deleteFirst();
+        //	li.deleteFirst();
 
-    //    li.deleteLast();
+        //    li.deleteLast();
         li.displayForward();
 
     }
