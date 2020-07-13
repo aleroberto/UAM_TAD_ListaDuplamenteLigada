@@ -30,7 +30,9 @@ class No {
 
 }
 
-
+/**
+* @methods 
+**/
 public class ListaDuplamenteLigada {
     No first;
     No last;
@@ -146,11 +148,31 @@ public class ListaDuplamenteLigada {
     }
 
     //Inserindo no meio da lista
-    public boolean insertAfter(int key, int dado) {
-        return ;
+    public boolean insertAfter(int key, int value) {
+        No auxiliar = first;
+        if(auxiliar == null) {
+            return false;
+        }
+
+        while (auxiliar.getDado() !=  value) {
+            auxiliar = auxiliar.getProximo();
+            if(auxiliar == null) {
+                return false;
+            }
+        }
+
+        No novoNo = new No(value);
+        if(auxiliar == last) {
+            novoNo.setProximo(null);
+            last = novoNo;
+        } else {
+            novoNo.setProximo(auxiliar.getProximo());
+            auxiliar.getProximo().setAnterior(novoNo);
+        }
+        novoNo.setAnterior(auxiliar);
+        auxiliar.setProximo(novoNo);
+        return true;
     }
-
-
 
     public static void main(String [] argsa) {
         ListaDuplamenteLigada li = new  ListaDuplamenteLigada();
@@ -164,6 +186,8 @@ public class ListaDuplamenteLigada {
 
         //    li.deleteLast();
         li.displayForward();
+        li.deleteKey(20);
+              li.displayForward();
 
     }
 
